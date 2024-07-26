@@ -4,7 +4,7 @@
       <el-input
           v-model="searchVal"
           style="width: 800px"
-          placeholder="请输入关键词"
+          placeholder="请输入关键词搜索"
           class="input-with-search"
       >
         <template #append>
