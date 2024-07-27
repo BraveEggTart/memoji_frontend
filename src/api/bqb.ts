@@ -2,13 +2,13 @@
 /* eslint-disable */
 import request from '@request';
 
-/** 获取Memes 获取Memes GET /api/meme/list */
-export async function memeList(
+/** 获取BQB 获取BQB GET /api/bqb/list */
+export async function bqbList(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: Api.memeListParams,
+  params: Api.bqbListParams,
   options?: { [key: string]: any },
 ) {
-  return request<Api.SuccessListStr_>('/api/meme/list', {
+  return request<Api.SuccessListStr_>('/api/bqb/list', {
     method: 'GET',
     params: {
       // tag has a default value:
@@ -23,9 +23,9 @@ export async function memeList(
   });
 }
 
-/** 获取随机Memes 获取随机Memes GET /api/meme/random */
-export async function memeRandom(options?: { [key: string]: any }) {
-  return request<Api.Success>('/api/meme/random', {
+/** 获取随机BQB 获取随机BQB GET /api/bqb/random */
+export async function bqbRandom(options?: { [key: string]: any }) {
+  return request<Api.Success>('/api/bqb/random', {
     method: 'GET',
     ...(options || {}),
   });

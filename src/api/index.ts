@@ -4,9 +4,11 @@
 // API 唯一标识：
 import * as memes from './memes';
 import * as emojis from './emojis';
+import * as bqb from './bqb';
 import * as check from './check';
 export default {
   memes,
   emojis,
+  bqb,
   check,
 };

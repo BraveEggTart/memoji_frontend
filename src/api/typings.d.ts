@@ -1,4 +1,17 @@
 declare namespace Api {
+  type bqbListParams = {
+    /** 名称 */
+    name?: string;
+    /** 类型 */
+    type?: string;
+    /** 标签 */
+    tag?: string[];
+    /** 页面记录数量 */
+    size?: number;
+    /** 页码数 */
+    page?: number;
+  };
+
   type checkParams = {
     word: string;
   };
