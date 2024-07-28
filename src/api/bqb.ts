@@ -2,31 +2,51 @@
 /* eslint-disable */
 import request from '@request';
 
-/** 获取BQB 获取BQB GET /api/bqb/list */
-export async function bqbList(
+/** 点踩BQB 点踩BQB GET /api/emoji/dislike */
+export async function bqbDislikes(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: Api.bqbListParams,
+  params: Api.bqbDislikesParams,
   options?: { [key: string]: any },
 ) {
-  return request<Api.SuccessListStr_>('/api/bqb/list', {
+  return request<Api.Success>('/api/emoji/dislike', {
     method: 'GET',
     params: {
-      // tag has a default value:
-      tag: '',
-      // size has a default value: 20
-      size: '20',
-      // page has a default value: 1
-      page: '1',
       ...params,
     },
     ...(options || {}),
   });
 }
 
-/** 获取随机BQB 获取随机BQB GET /api/bqb/random */
-export async function bqbRandom(options?: { [key: string]: any }) {
-  return request<Api.Success>('/api/bqb/random', {
+/** 点赞BQB 点赞BQB GET /api/emoji/like */
+export async function bqbLikes(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: Api.bqbLikesParams,
+  options?: { [key: string]: any },
+) {
+  return request<Api.Success>('/api/emoji/like', {
     method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 获取BQB 获取BQB GET /api/emoji/list */
+export async function bqbList(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: Api.bqbListParams,
+  options?: { [key: string]: any },
+) {
+  return request<any>('/api/emoji/list', {
+    method: 'GET',
+    params: {
+      // page has a default value: 1
+      page: '1',
+      // size has a default value: 20
+      size: '20',
+      ...params,
+    },
     ...(options || {}),
   });
 }

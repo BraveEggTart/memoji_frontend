@@ -8,7 +8,7 @@
           class="input-with-search"
       >
         <template #append>
-          <el-button>搜索</el-button>
+          <el-button @click="getBQB">搜索</el-button>
         </template>
       </el-input>
     </div>
@@ -16,23 +16,23 @@
       <li v-for="(item,index) in countList" :key="index" class="infinite-list-item">
         <el-card>
           <el-image
-              :src="randomUrl(index)"
+              :src="item.url"
               :zoom-rate="1.2"
               :max-scale="7"
               :min-scale="0.2"
-              :preview-src-list="[randomUrl(index)]"
+              :preview-src-list="[item.url]"
               :initial-index="0"
               fit="contain"
           />
           <div class="icon-box">
-            <el-icon color="red" @click="item.like++">
+            <el-icon color="red" @click="item.likes++">
               <IconBxsLike />
             </el-icon>
-            <p>{{ item.like }}</p>
-            <el-icon color="#409eff" @click="item.dislike++">
+            <p>{{ item.likes }}</p>
+            <el-icon color="#409eff" @click="item.dislikes++">
               <IconBxsDislike />
             </el-icon>
-            <p>{{ item.dislike }}</p>
+            <p>{{ item.dislikes }}</p>
           </div>
         </el-card>
       </li>
@@ -67,32 +67,31 @@ const searchVal = ref();
 const load = () => {
   loading.value = true;
   setTimeout(() => {
-    const newRow = {
-      like: 0,
-      dislike: 0
-    };
-    const arr = new Array(10).fill().map(() => Object.assign({}, newRow));
-    countList.value = [...countList.value,...arr]
     loading.value = false;
   }, 500);
 };
 
-const urls = ref<string[]>([]);
+function getBQB() {
+  axios({
+      url: '/api/emoji/list',
+      method: 'get',
+      params: {
+        name: searchVal.value,
+        page: 1,
+        size: 100,
+      }
+    }).then((res) => {
+      countList.value = [];
+      res.data.data.forEach(element => {
+        countList.value.push(element);
+      });
+    });
+};
 
 onMounted(() => {
-  for (let index = 0; index < 100; index++) {
-    axios({
-      url: '/api/meme/random',
-      method: 'get',
-    }).then((res) => {
-      urls.value.push(res.data.data);
-    });
-  }
+  getBQB()
 });
 
-const randomUrl = (i: number) => {
-  return urls.value[i % 100];
-};
 </script>
 
 <style lang="scss" scoped>
