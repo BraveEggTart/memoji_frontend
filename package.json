@@ -21,6 +21,7 @@
     "@vueuse/core": "^10.11.0",
     "axios": "^1.7.2",
     "element-plus": "^2.7.7",
+    "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "prism-theme-vars": "^0.2.5",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@iconify/json": "^2.2.230",
     "@intlify/unplugin-vue-i18n": "^4.0.0",
+    "@types/lodash-es": "^4.17.12",
     "@types/markdown-it-link-attributes": "^3.0.5",
     "@types/node": "^20.14.12",
     "@types/nprogress": "^0.2.3",

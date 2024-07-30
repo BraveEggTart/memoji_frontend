@@ -1,7 +1,13 @@
 <template>
   <div class="image-container">
     <div class="search-input">
-      <el-input v-model="searchVal" style="width: 800px" placeholder="请输入关键词搜索" class="input-with-search" @keyup.enter="getBQB">
+      <el-input
+        v-model="searchVal"
+        style="width: 800px"
+        placeholder="请输入关键词搜索"
+        class="input-with-search"
+        @keyup.enter="getBQB"
+      >
         <template #append>
           <el-button @click="getBQB">搜索</el-button>
         </template>
@@ -20,11 +26,11 @@
             fit="contain"
           />
           <div class="icon-box">
-            <el-icon color="red" @click="item.likes++">
+            <el-icon color="red" @click="likeBQB(item.key)">
               <IconBxsLike />
             </el-icon>
             <p>{{ item.likes }}</p>
-            <el-icon color="#409eff" @click="item.dislikes++">
+            <el-icon color="#409eff" @click="dislikeBQB(item.key)">
               <IconBxsDislike />
             </el-icon>
             <p>{{ item.dislikes }}</p>
@@ -36,19 +42,27 @@
       <p v-if="loading">Loading...</p>
       <p v-if="noMore">No more</p>
     </div>
-    <el-pagination :page-size="20" :pager-count="11" layout="prev, pager, next" :total="1000" />
+    <el-pagination
+      v-model:current-page="currentPage"
+      :page-size="20"
+      :pager-count="11"
+      layout="prev, pager, next"
+      :total="1000"
+      @current-change="handleCurrentChange"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import axios from 'axios';
 import { ref } from 'vue';
 import IconBxsLike from '~icons/bxs/like';
 import IconBxsDislike from '~icons/bxs/dislike';
-
-axios.defaults.baseURL = 'https://nsfw.just4dream.club';
+import { bqbDislikes, bqbLikes, bqbList } from '@/api/bqb';
+import { ElMessage } from 'element-plus';
 
 const count = ref(0);
+const total = ref(1);
+const currentPage = ref(1);
 const countList = ref([]);
 const loading = ref(false);
 const noMore = computed(() => count.value >= 100);
@@ -62,21 +76,33 @@ const load = () => {
 };
 
 function getBQB() {
-  axios({
-    url: '/api/emoji/list',
-    method: 'get',
-    params: {
-      name: searchVal.value,
-      page: 1,
-      size: 100,
-    },
+  bqbList({
+    name: searchVal.value,
+    page: currentPage.value,
   }).then((res) => {
     countList.value = [];
-    res.data.data.forEach((element: string) => {
+    res.data.forEach((element: string) => {
       countList.value.push(element);
     });
+    total.value = res.data.total;
   });
 }
+
+function likeBQB(key: string) {
+  bqbLikes({ key }).then((res) => {
+    ElMessage.success(res.msg);
+  });
+}
+
+function dislikeBQB(key: string) {
+  bqbDislikes({ key }).then((res) => {
+    ElMessage.success(res.msg);
+  });
+}
+
+const handleCurrentChange = (val: number) => {
+  getBQB();
+};
 
 onMounted(() => {
   getBQB();

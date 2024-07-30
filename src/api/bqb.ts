@@ -1,6 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
-import request from '@request';
+import { request } from '../utils/request';
 
 /** 点踩BQB 点踩BQB GET /api/emoji/dislike */
 export async function bqbDislikes(
