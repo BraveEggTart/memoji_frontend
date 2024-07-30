@@ -1,7 +1,7 @@
 <template>
   <div class="image-container">
     <div class="search-input">
-      <el-input v-model="searchVal" style="width: 800px" placeholder="请输入关键词搜索" class="input-with-search">
+      <el-input v-model="searchVal" style="width: 800px" placeholder="请输入关键词搜索" class="input-with-search" @keyup.enter="getBQB">
         <template #append>
           <el-button @click="getBQB">搜索</el-button>
         </template>
@@ -113,7 +113,7 @@ onMounted(() => {
   .infinite-list {
     display: flex;
     flex-wrap: wrap;
-    place-content: flex-start flex-start;
+    place-content: flex-start center;
     height: 100%;
     padding: 0;
     margin: 0;
