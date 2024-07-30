@@ -3,9 +3,9 @@ import { createI18n } from 'vue-i18n';
 import messages from '@intlify/unplugin-vue-i18n/messages';
 import ElementPlus from 'element-plus';
 // vue router
-import router from '@/router/index';
+import router from './router';
 // pinia
-import store from '@/store';
+import store from './store';
 import App from './App.vue';
 
 import { toggleDark } from './utils/dark';
