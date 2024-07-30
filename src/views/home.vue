@@ -1,8 +1,7 @@
 <template>
   <div class="image-container">
     <div class="search-input">
-      <el-input v-model="searchVal" style="width: 800px"
-                placeholder="请输入关键词搜索" class="input-with-search" @keyup.enter="getBQB">
+      <el-input v-model="searchVal" style="width: 800px" placeholder="请输入关键词搜索" class="input-with-search" @keyup.enter="getBQB">
         <template #append>
           <el-button @click="getBQB">搜索</el-button>
         </template>
