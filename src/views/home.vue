@@ -47,7 +47,7 @@
       :page-size="20"
       :pager-count="11"
       layout="prev, pager, next"
-      :total="1000"
+      :total="total"
       @current-change="handleCurrentChange"
     />
   </div>
@@ -84,7 +84,7 @@ function getBQB() {
     res.data.forEach((element: string) => {
       countList.value.push(element);
     });
-    total.value = res.data.total;
+    total.value = res.total;
   });
 }
 
