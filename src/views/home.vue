@@ -26,11 +26,11 @@
             fit="contain"
           />
           <div class="icon-box">
-            <el-icon color="red" @click="likeBQB(item.key)">
+            <el-icon color="red" @click="likeBQB(item)">
               <IconBxsLike />
             </el-icon>
             <p>{{ item.likes }}</p>
-            <el-icon color="#409eff" @click="dislikeBQB(item.key)">
+            <el-icon color="#409eff" @click="dislikeBQB(item)">
               <IconBxsDislike />
             </el-icon>
             <p>{{ item.dislikes }}</p>
@@ -88,19 +88,21 @@ function getBQB() {
   });
 }
 
-function likeBQB(key: string) {
-  bqbLikes({ key }).then((res) => {
+function likeBQB(item) {
+  bqbLikes({ key: item.key }).then((res) => {
     ElMessage.success(res.msg);
+    item.likes++;
   });
 }
 
-function dislikeBQB(key: string) {
-  bqbDislikes({ key }).then((res) => {
+function dislikeBQB(item) {
+  bqbDislikes({ key:item.key }).then((res) => {
     ElMessage.success(res.msg);
+    item.dislikes++;
   });
 }
 
-const handleCurrentChange = (val: number) => {
+const handleCurrentChange = (val) => {
   getBQB();
 };
 
