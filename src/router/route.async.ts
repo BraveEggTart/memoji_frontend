@@ -6,7 +6,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     meta: {
-      title: '',
+      title: 'Emoji',
       icon: '',
     },
     component: () => import('../views/home.vue'),
