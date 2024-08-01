@@ -16,4 +16,13 @@ export const formatJsonToUrlParams = (data: instanceObject) => {
     : '';
 };
 
-export default formatJsonToUrlParams;
+/**
+ * 判断是否为 Email（支持中文邮箱）
+ * @param email String格式数据
+ * */
+export const isEmail = (email: string) => {
+  const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+  return reg.test(email);
+};
+
+export default { formatJsonToUrlParams, isEmail };

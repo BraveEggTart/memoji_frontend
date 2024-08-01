@@ -10,9 +10,13 @@
       >
         <template #append>
           <el-button @click="getBQB">搜索</el-button>
+          <el-button @click="dialogStore.openLoginDialog">登陆测试</el-button>
         </template>
       </el-input>
     </div>
+
+    <LoginDialog />
+
     <ul v-infinite-scroll="load" :infinite-scroll-disabled="disabled" class="infinite-list">
       <li v-for="(item, index) in countList" :key="index" class="infinite-list-item">
         <el-card>
@@ -57,6 +61,7 @@
 import { ref } from 'vue';
 import IconBxsLike from '~icons/bxs/like';
 import IconBxsDislike from '~icons/bxs/dislike';
+import { useDialogStore } from '@/store/dialog';
 import { bqbDislikes, bqbLikes, bqbList } from '@/api/bqb';
 import { ElMessage } from 'element-plus';
 
@@ -65,6 +70,7 @@ const total = ref(1);
 const currentPage = ref(1);
 const countList = ref([]);
 const loading = ref(false);
+const dialogStore = useDialogStore();
 const noMore = computed(() => count.value >= 100);
 const disabled = computed(() => loading.value || noMore.value);
 const searchVal = ref();
@@ -81,7 +87,7 @@ function getBQB() {
     page: currentPage.value,
   }).then((res) => {
     countList.value = [];
-    res.data.forEach((element: string) => {
+    res.data.data.forEach((element: string) => {
       countList.value.push(element);
     });
     total.value = res.data.total;

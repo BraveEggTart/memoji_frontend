@@ -35,7 +35,7 @@ function createService() {
       switch (code) {
         case 200:
           // 业务正常
-          return apiData;
+          return response;
         default:
           // 不是正确的 code
           ElMessage.error(apiData.msg || 'Error');

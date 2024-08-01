@@ -5,10 +5,18 @@ button:
   home: Home
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
-intro:
-  title: "❌ or ✅"
-  desc: Welcome to the sensitive word detection service
-  whats-the-word: What's the Word?
-  check-pass: ✅Check Pass~✅
-  check-block: ❌Check Block!❌
+login:
+  email: Email
+  emailValidate: Please input the right email address
+  emailLogin: Email Code Login
+  emailPlaceholder: Please input your email address
+  emailCodeTimeout: seconds before resend code
+  sendEmailCode: Send Code
+  resendCode: Resend Code
+  sendCodeSuccess: Send Email Code Success
+  sendCodeFail: Send Email Code Fail
+  code: Code
+  captcha: Captcha
+  captchaPlaceholder: Please input the right answer
+  remember: RememberMe
 not-found: Not found
