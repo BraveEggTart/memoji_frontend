@@ -7,7 +7,7 @@
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "noEmit": true,
+    "noEmit": false,
     "types": ["@intlify/unplugin-vue-i18n/messages"],
     // baseUrl来告诉编译器到哪里去查找模块，所有非相对模块导入都会被当做相对于 baseUrl。
     "baseUrl": ".",
@@ -17,7 +17,7 @@
     }
   },
   "include": [
-    "vite.config.ts",
+    // "vite.config.ts",
     "./src/auto-imports.d.ts",
   ]
 }

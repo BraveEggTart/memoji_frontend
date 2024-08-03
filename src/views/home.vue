@@ -9,7 +9,7 @@
         @keyup.enter="getBQB"
       >
         <template #append>
-          <el-button @click="getBQB">{{ t("button.search") }}</el-button>
+          <el-button @click="getBQB">{{ t('button.search') }}</el-button>
         </template>
       </el-input>
     </div>
@@ -100,7 +100,7 @@ function likeBQB(item) {
 }
 
 function dislikeBQB(item) {
-  bqbDislikes({ key:item.key }).then((res) => {
+  bqbDislikes({ key: item.key }).then((res) => {
     ElMessage.success(res.msg);
     item.dislikes++;
   });

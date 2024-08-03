@@ -34,8 +34,6 @@
       "node",
       "vite/client",
       "element-plus/global",
-      "@pureadmin/table/volar",
-      "@pureadmin/descriptions/volar"
     ]
   },
   "references": [
@@ -48,7 +46,7 @@
   ],
   "include": [
     "mock/*.ts",
-    "src/**/*.ts",
+    // "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "types/*.d.ts",
