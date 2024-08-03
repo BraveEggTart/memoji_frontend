@@ -5,6 +5,8 @@ button:
   home: Home
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
+  search: Search
+  searchPlaceholder: Please input key word
 login:
   email: Email
   emailValidate: Please input the right email address
@@ -19,4 +21,6 @@ login:
   captcha: Captcha
   captchaPlaceholder: Please input the right answer
   remember: RememberMe
+header:
+  login: Login
 not-found: Not found

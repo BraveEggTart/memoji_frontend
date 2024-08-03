@@ -8,8 +8,6 @@ import router from './router';
 import store from './store';
 import App from './App.vue';
 
-import { toggleDark } from './utils/dark';
-
 import 'element-plus/dist/index.css';
 import '@/assets/styles/index.scss';
 
@@ -19,7 +17,6 @@ const i18n = createI18n({
 });
 
 const app = createApp(App);
-toggleDark();
 app.use(router);
 app.use(store);
 app.use(i18n);

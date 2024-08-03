@@ -5,6 +5,8 @@ button:
   home: 首页
   toggle_dark: 切换深色模式
   toggle_langs: 切换语言
+  search: 搜索
+  searchPlaceholder: 请输入关键词搜索
 login:
   email: 邮箱地址
   emailValidate: 请输入正确格式的邮箱地址
@@ -19,4 +21,6 @@ login:
   captcha: 验证码
   captchaPlaceholder: 请输入计算结果
   remember: 自动登录
+header:
+  login: 登陆
 not-found: 未找到页面

@@ -4,13 +4,12 @@
       <el-input
         v-model="searchVal"
         style="width: 800px"
-        placeholder="请输入关键词搜索"
+        :placeholder="t('button.searchPlaceholder')"
         class="input-with-search"
         @keyup.enter="getBQB"
       >
         <template #append>
-          <el-button @click="getBQB">搜索</el-button>
-          <el-button @click="dialogStore.openLoginDialog">登陆测试</el-button>
+          <el-button @click="getBQB">{{ t("button.search") }}</el-button>
         </template>
       </el-input>
     </div>
@@ -61,16 +60,15 @@
 import { ref } from 'vue';
 import IconBxsLike from '~icons/bxs/like';
 import IconBxsDislike from '~icons/bxs/dislike';
-import { useDialogStore } from '@/store/dialog';
 import { bqbDislikes, bqbLikes, bqbList } from '@/api/bqb';
 import { ElMessage } from 'element-plus';
 
+const { t } = useI18n();
 const count = ref(0);
 const total = ref(1);
 const currentPage = ref(1);
 const countList = ref([]);
 const loading = ref(false);
-const dialogStore = useDialogStore();
 const noMore = computed(() => count.value >= 100);
 const disabled = computed(() => loading.value || noMore.value);
 const searchVal = ref();
