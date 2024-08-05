@@ -120,7 +120,7 @@ onMounted(() => {
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  height: 90vh;
+  height: 85vh;
   padding-top: 80px;
 
   .center-text {
