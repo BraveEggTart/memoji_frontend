@@ -88,7 +88,7 @@ function getBQB() {
     res.data.data.forEach((element: string) => {
       countList.value.push(element);
     });
-    total.value = res.total;
+    total.value = res.data.total;
   });
 }
 
