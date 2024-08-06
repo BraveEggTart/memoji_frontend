@@ -41,13 +41,9 @@
         </el-card>
       </li>
     </ul>
-    <div class="center-text">
-      <p v-if="loading">Loading...</p>
-      <p v-if="noMore">No more</p>
-    </div>
     <el-pagination
       v-model:current-page="currentPage"
-      :page-size="20"
+      :page-size="size"
       :pager-count="11"
       layout="prev, pager, next"
       :total="total"
@@ -64,6 +60,7 @@ import { bqbDislikes, bqbLikes, bqbList } from '@/api/bqb';
 import { ElMessage } from 'element-plus';
 
 const { t } = useI18n();
+const size = ref(10);
 const count = ref(0);
 const total = ref(1);
 const currentPage = ref(1);
@@ -83,6 +80,7 @@ function getBQB() {
   bqbList({
     name: searchVal.value,
     page: currentPage.value,
+    size: size.value,
   }).then((res) => {
     countList.value = [];
     res.data.data.forEach((element: string) => {
