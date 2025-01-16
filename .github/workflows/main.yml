@@ -3,7 +3,7 @@ name: Build And Deploy To ECS
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:                             
   build-and-deploy:

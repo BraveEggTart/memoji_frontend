@@ -1,0 +1,46 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REPOSITORY_NAME: memoji_frontend
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+
+    - name: Setup SSH
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ vars.DEPLOY_HOST }}
+        username: ${{ vars.DEPLOY_USERNAME }}
+        password: ${{ vars.SSH_PASSWORD }}
+        port: 22
+        script: |
+          if [ -d /code/${{ env.REPOSITORY_NAME }} ]; then
+            cd /code/${{ env.REPOSITORY_NAME }}
+          else
+            cd /code
+            git clone ssh://git@gitea.just4dream.club:222/BraveEggTart/${{ env.REPOSITORY_NAME }}.git
+            cd /code/${{ env.REPOSITORY_NAME }}
+          fi
+          git pull
+          if docker ps -a --format "{{.Names}}" | grep -q "${{ env.REPOSITORY_NAME }}"; then
+            docker stop ${{ env.REPOSITORY_NAME }}
+            docker rm ${{ env.REPOSITORY_NAME }}
+            docker rmi ${{ env.REPOSITORY_NAME }}
+          fi
+          rm -rf dist
+          source ~/.nvm/nvm.sh
+          nvm -v
+          nvm use v18.20.3
+          node -v
+          pnpm install
+          npm run build
+          /root/.nvm/versions/node/v18.20.3/bin/npm run build
+          docker-compose up -d          
