@@ -7,7 +7,7 @@ import { get } from 'lodash-es';
 function createService() {
   // 创建一个 axios 实例命名为 service
   const service = axios.create({
-    baseURL: 'https://nsfw.just4dream.club',
+    baseURL: 'https://emoji.just4dream.club',
     timeout: 5000,
     headers: { 'Content-Type': 'application/json' },
   });
