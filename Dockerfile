@@ -1,5 +1,5 @@
 # 使用官方的 Nginx 镜像作为基础镜像
-FROM hub.atomgit.com/library/nginx:alpine
+FROM docker.m.daocloud.io/library/nginx:alpine
 
 # 将本地的前端资源目录复制到 Nginx 默认的静态文件目录
 COPY dist /usr/share/nginx/html
